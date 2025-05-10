@@ -37,3 +37,52 @@ source env/bin/activate
 
 # Install required Python packages
 pip install -r requirements.txt
+```
+
+## ▶️ Usage
+
+Run the controller interactively:
+
+```bash
+./run.sh
+```
+
+Then enter commands:
+
+```text
+get SYSID_THISMAV
+set ARMING_CHECK 0
+exit
+```
+
+Or run one-off commands:
+
+```bash
+./run.sh get SYSID_THISMAV
+./run.sh set ARMING_CHECK 0
+```
+
+## 📂 Project Structure
+
+```
+.
+├── Dockerfile           # ArduPilot SITL simulator setup
+├── mavctl.py            # Python CLI tool
+├── run.sh               # Launcher script
+├── requirements.txt     # Python dependencies
+└── README.md            # Project documentation
+```
+
+## 📌 Example Parameters
+
+* `SYSID_THISMAV`: System ID of the drone
+* `ARMING_CHECK`: Enable/disable pre-arm safety checks
+* `FS_THR_ENABLE`: Throttle failsafe mode
+
+Full parameter list: https://ardupilot.org/copter/docs/parameters.html
+
+## 🧠 Design Decisions
+
+* **Separation of Concerns**: The simulator runs in a Docker container; the CLI runs on the host.
+* **Error Handling**: Graceful failure messages and parameter validation.
+* **Extendability**: Easily extendable to support more MAVLink operations.
